@@ -9,6 +9,6 @@ func _ready():
 	osutils = OsUtils.new()
 	
 	print("Name: " + osutils.user_full_name)
-    print("Is SteamDeck? " + str(osutils.is_steam_deck))
-    print("OS Type: " + osutils.os_type)
+	print("Is SteamDeck? " + str(osutils.is_steam_deck))
+	print("OS Type: " + osutils.os_type)
 ```
