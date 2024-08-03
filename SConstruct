@@ -18,14 +18,14 @@ sources = Glob("src/*.cpp")
 
 if env["platform"] == "macos":
     library = env.SharedLibrary(
-        "game/addons/godot-osutils/bin/libosutils.{}.{}.framework/libosutils.{}.{}".format(
+        "game/addons/godot-osutils/bin/libgodotosutils.{}.{}.framework/libgodotosutils.{}.{}".format(
             env["platform"], env["target"], env["platform"], env["target"]
         ),
         source=sources,
     )
 else:
     library = env.SharedLibrary(
-        "game/addons/godot-osutils/bin/libosutils{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
+        "game/addons/godot-osutils/bin/libgodotosutils{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
         source=sources,
     )
 
