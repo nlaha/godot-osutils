@@ -95,7 +95,7 @@ jobs:
       - name: Delete compilation files
         if: ${{ matrix.platform == 'windows' }}
         run: |
-          Remove-Item game/addons/osutils/bin/* -Include *.exp,*.lib,*.pdb -Force
+          Remove-Item game/addons/godot-osutils/bin/* -Include *.exp,*.lib,*.pdb -Force
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3

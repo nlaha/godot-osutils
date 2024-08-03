@@ -1,9 +1,8 @@
 # Godot 4+ specific ignores
 .godot/
-game/addons/godot_midi/bin/*
 .sconsign*.dblite
 
-game/addons/osutils/bin/*
+game/addons/godot-osutils/bin/*
 
 # Binaries
 *.o
