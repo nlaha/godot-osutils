@@ -98,7 +98,7 @@ jobs:
           Remove-Item game/addons/godot-osutils/bin/* -Include *.exp,*.lib,*.pdb -Force
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ github.event.repository.name }}
           path: |
