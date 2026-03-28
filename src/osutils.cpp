@@ -2,7 +2,8 @@
 
 using namespace godot;
 
-void OsUtils::_bind_methods() {
+void OsUtils::_bind_methods()
+{
     ClassDB::bind_method(D_METHOD("get_user_full_name"), &OsUtils::get_user_full_name);
     ClassDB::bind_method(D_METHOD("set_user_full_name", "user_full_name"), &OsUtils::set_user_full_name);
     ADD_PROPERTY(PropertyInfo(Variant::STRING, "user_full_name"), "set_user_full_name", "get_user_full_name");
@@ -15,8 +16,9 @@ void OsUtils::_bind_methods() {
 }
 
 /// @brief Constructor
-OsUtils::OsUtils() {
-    
+OsUtils::OsUtils()
+{
+
     // initialize default values
     this->is_steam_deck = false;
     this->user_full_name = "Unknown";
@@ -27,10 +29,12 @@ OsUtils::OsUtils() {
     char *lgn;
     struct passwd *pw;
 
-    if ((lgn = getlogin()) == NULL || (pw = getpwnam(lgn)) == NULL) {
+    if ((lgn = getlogin()) == NULL || (pw = getpwnam(lgn)) == NULL)
+    {
         this->user_full_name = "Unknown";
     }
-    else {
+    else
+    {
         this->user_full_name = pw->pw_gecos;
         if (this->user_full_name == "Steam Deck User")
         {
@@ -42,10 +46,10 @@ OsUtils::OsUtils() {
 #elif _WIN32
     this->os_type = "Windows";
     // ULEN + 1 is the maximum length of a user's name in windows
-    TCHAR name [ UNLEN + 1 ];
+    TCHAR name[UNLEN + 1];
     DWORD size = UNLEN + 1;
 
-    if (GetUserNameEx(EXTENDED_NAME_FORMAT::NameDisplay, (TCHAR*)name, &size ))
+    if (GetUserNameEx(EXTENDED_NAME_FORMAT::NameDisplay, (TCHAR *)name, &size))
     {
         this->user_full_name = name;
     }
@@ -53,9 +57,23 @@ OsUtils::OsUtils() {
     {
         this->user_full_name = "Unknown";
     }
+#elif __APPLE__
+    this->os_type = "macOS";
+    char *lgn;
+    struct passwd *pw;
+
+    if ((lgn = getlogin()) == NULL || (pw = getpwnam(lgn)) == NULL)
+    {
+        this->user_full_name = "Unknown";
+    }
+    else
+    {
+        this->user_full_name = pw->pw_gecos;
+    }
 #endif
 }
 
 /// @brief Destructor
-OsUtils::~OsUtils() {
+OsUtils::~OsUtils()
+{
 }
